@@ -7,10 +7,6 @@ class Tableau1 extends Phaser.Scene{
 
         let me=this;
 
-        let newP = document.createElement('p');
-        newP.textContent = 'Paragraphe créé et inséré grâce au JavaScript';
-
-
         this.largeur=1000;
         this.hauteur=500;
 
