@@ -4,6 +4,7 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('cercle', 'assets/cercle.png');
     }
     create() {
+
         let me=this;
 
         let newP = document.createElement('p');
@@ -142,15 +143,15 @@ class Tableau1 extends Phaser.Scene{
     update(){
         if(this.balle.x > this.largeur){
             this.Initiale();
-            this.gauche.setY(250)
-            this.droite.setY(250)
+            this.gauche.setY(200)
+            this.droite.setY(200)
 
         }
 
         if(this.balle.x < 0) {
             this.Initiale();
-            this.gauche.setY(225)
-            this.droite.setY(225)
+            this.gauche.setY(200)
+            this.droite.setY(200)
 
         }
 
