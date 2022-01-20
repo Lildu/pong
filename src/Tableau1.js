@@ -16,7 +16,7 @@ class Tableau1 extends Phaser.Scene{
         this.balle.setVelocityY(0)
         this.balle.setMaxVelocity(200)
 
-        this.Initiale();
+
 
         this.haut=this.physics.add.image(0,0,'carre').setOrigin(0,0);
         this.haut.setDisplaySize(this.largeur,20)
@@ -51,6 +51,11 @@ class Tableau1 extends Phaser.Scene{
             console.log("touche droite");
             me.rebond(me.droite)
         })
+        this.Initiale();
+        this.joueurGauche = new Joueur('Robert','joueurGauche')
+        this.joueurDroite = new Joueur('Jean marie','joueurDroite')
+        console.log(this.joueurGauche)
+
         this.initKeyboard()
 
     }
@@ -119,9 +124,19 @@ class Tableau1 extends Phaser.Scene{
             }
         });
     }
+    win(joueur){
+        //alert('Joueur '+joueur.name+' gagne')
+        joueur.score ++;
+        //alert('Le score est de '+this.joueurGauche.score+' a '+this.joueurDroite.score)
+        this.Initiale();
+    }
+
+
     Initiale (){
         this.balle.setX(this.largeur/2);
         this.balle.setY(this.hauteur/2);
+        this.gauche.setY(this.hauteur/2-50);
+        this.droite.setY(this.hauteur/2-50);
 
 
         let pourcent = Phaser.Math.Between(0, 100)
@@ -137,6 +152,13 @@ class Tableau1 extends Phaser.Scene{
 
     }
     update(){
+        if(this.balle.x>this.largeur){
+            this.win(this.joueurGauche);
+        }
+        if(this.balle.x<0){
+            this.win(this.joueurDroite);
+        }
+
         if(this.balle.x > this.largeur){
             this.Initiale();
             this.gauche.setY(200)
