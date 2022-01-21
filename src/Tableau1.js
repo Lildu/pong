@@ -330,7 +330,7 @@ class Tableau1 extends Phaser.Scene{
 
 
 
-        this.balle=this.physics.add.image(this.largeur/2,this.hauteur/2,'cercle')
+        this.balle=this.physics.add.image(this.largeur/2,this.hauteur/2,'cercle1')
         this.balle.setDisplaySize(20,20)
         this.balle.body.setBounce(1.1,1.1)
         this.balle.setVelocityY(0)
