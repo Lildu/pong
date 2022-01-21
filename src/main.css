@@ -40,9 +40,13 @@ canvas{
 }
 
 .score{
-    color:#0f0
+    font-family: Bradley Hand,cursive,Arial, sans-serif;
+    color: rgba(0, 197, 0, 0.78)
+
 }
 .name{
+    font-family: Bradley Hand,cursive,Arial, sans-serif;
+    color: #824b0f;
     font-size: 3vw;
 }
 

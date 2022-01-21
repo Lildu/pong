@@ -1,8 +1,14 @@
 class Tableau1 extends Phaser.Scene{
     preload(){
         this.load.image('carre', 'assets/carre.png');
+        this.load.image('carre1', 'assets/carre1.png');
+        this.load.image('carre2', 'assets/carre2.png');
         this.load.image('cercle', 'assets/cercle.png');
         this.load.image('cercle1', 'assets/cercle1.png');
+        for(let t=1;t<=11;t++){
+            this.load.image('leaf'+t, 'assets/leaf/leaf'+t+'.png');
+        }
+
         for(let i=1;i<=300;i++){
             this.load.image('sea'+i, 'assets/sea/sea'+i+'.jpg');
         }
@@ -14,8 +20,8 @@ class Tableau1 extends Phaser.Scene{
         this.largeur=1000;
         this.hauteur=500;
 
-        this.back=this.add.image(500,250,'sea1')
-        this.back.setDisplaySize(1000,500)
+
+
         this.seanim = this.add.sprite(0, 0, 'sea1').setOrigin(0,0);
         this.seanim.setDisplaySize(1000,500)
         this.anims.create({
@@ -328,6 +334,28 @@ class Tableau1 extends Phaser.Scene{
         });
         this.seanim.play('sea');
 
+        this.leafanim = this.add.sprite(0, 0, 'leaf1').setOrigin(0,0);
+        this.leafanim.setDisplaySize(1000,500)
+        this.leafanim.alpha=0.9;
+        this.anims.create({
+            key: 'leaf',
+            frames: [
+                {key:'leaf1'},
+                {key:'leaf2'},
+                {key:'leaf3'},
+                {key:'leaf4'},
+                {key:'leaf5'},
+                {key:'leaf6'},
+                {key:'leaf7'},
+                {key:'leaf8'},
+                {key:'leaf9'},
+                {key:'leaf10'},
+                {key:'leaf11'},
+            ],
+            frameRate: 2,
+            repeat: -1
+        });
+        this.leafanim.play('leaf');
 
 
 
@@ -339,26 +367,27 @@ class Tableau1 extends Phaser.Scene{
 
 
 
-        this.haut=this.physics.add.image(0,0,'carre').setOrigin(0,0);
+        this.haut=this.physics.add.image(0,-20,'carre').setOrigin(0,0);
         this.haut.setDisplaySize(this.largeur,20)
         this.haut.body.setAllowGravity(false)
         this.haut.setImmovable(true)
 
 
-        this.bas=this.physics.add.image(0,this.hauteur-20,'carre').setOrigin(0,0);
+        this.bas=this.physics.add.image(0,this.hauteur,'carre').setOrigin(0,0);
         this.bas.setDisplaySize(this.largeur,20)
         this.bas.body.setAllowGravity(false)
         this.bas.setImmovable(true)
 
 
-        this.gauche=this.physics.add.image(30,200,'carre').setOrigin(0,0);
+        this.gauche=this.physics.add.image(30,200,'carre1').setOrigin(0,0);
         this.gauche.setDisplaySize(20,100)
         this.gauche.body.setAllowGravity(false)
         this.gauche.setImmovable(true)
 
 
-        this.droite=this.physics.add.image(950,200,'carre').setOrigin(0,0);
+        this.droite=this.physics.add.image(950,200,'carre2').setOrigin(0,0);
         this.droite.setDisplaySize(20,100)
+        //this.droite.flipX(true)
         this.droite.body.setAllowGravity(false)
         this.droite.setImmovable(true)
 
@@ -373,8 +402,8 @@ class Tableau1 extends Phaser.Scene{
             me.rebond(me.droite)
         })
         this.Initiale();
-        this.joueurGauche = new Joueur('Robert','joueurGauche')
-        this.joueurDroite = new Joueur('Jean marie','joueurDroite')
+        this.joueurGauche = new Joueur('Joueur 1','joueurGauche')
+        this.joueurDroite = new Joueur('Joueur 2','joueurDroite')
         console.log(this.joueurGauche)
 
         this.initKeyboard()
@@ -407,38 +436,43 @@ class Tableau1 extends Phaser.Scene{
             switch (kevent.keyCode)
             {
                 case Phaser.Input.Keyboard.KeyCodes.S:
-                    if (me.gauche.y>20){
+                    if (me.gauche.y>0){
                         me.gauche.setVelocityY(-100)
                     }
                     else{
-                        me.gauche.setY(20)
+                        me.gauche.setY(0)
+                        me.gauche.setVelocityY(0)
                     }
                     break;
 
                 case Phaser.Input.Keyboard.KeyCodes.X:
-                    if (me.gauche.y<380){
+                    if (me.gauche.y<400){
                         me.gauche.setVelocityY(100)
                     }
                     else{
-                        me.gauche.setY(380)
+                        me.gauche.setVelocityY(0)
+                        me.gauche.setY(400)
                     }
                     break;
 
                 case Phaser.Input.Keyboard.KeyCodes.J:
-                    if (me.droite.y>20){
+                    if (me.droite.y>0){
                         me.droite.setVelocityY(-100)
                     }
                     else{
-                        me.droite.setY(20)
+                        me.droite.setY(0)
+                        me.droite.setVelocityY(0)
                     }
                     break;
 
                 case Phaser.Input.Keyboard.KeyCodes.N:
-                    if (me.droite.y<380){
+                    if (me.droite.y<400){
                         me.droite.setVelocityY(100)
                     }
                     else{
-                        me.droite.setY(380)
+                        me.droite.setY(400)
+                        me.droite.setVelocityY(0)
+
                     }
                     break;
 
@@ -474,10 +508,10 @@ class Tableau1 extends Phaser.Scene{
 
 
     Initiale (){
-        this.balle.setX(this.largeur/2);
-        this.balle.setY(this.hauteur/2);
-        this.gauche.setY(this.hauteur/2-50);
-        this.droite.setY(this.hauteur/2-50);
+        this.balle.setX((this.largeur/2)-50);
+        this.balle.setY((this.hauteur/2));
+        this.gauche.setY((this.hauteur/2)-50);
+        this.droite.setY((this.hauteur/2)-50);
 
 
         let pourcent = Phaser.Math.Between(0, 100)
@@ -493,6 +527,8 @@ class Tableau1 extends Phaser.Scene{
 
     }
     update(){
+
+
         if(this.balle.x>this.largeur){
             this.win(this.joueurGauche);
         }
