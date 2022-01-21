@@ -2,6 +2,7 @@ class Tableau1 extends Phaser.Scene{
     preload(){
         this.load.image('carre', 'assets/carre.png');
         this.load.image('cercle', 'assets/cercle.png');
+        this.load.image('cercle1', 'assets/cercle1.png');
         for(let i=1;i<=300;i++){
             this.load.image('sea'+i, 'assets/sea/sea'+i+'.jpg');
         }
