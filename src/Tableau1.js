@@ -12,6 +12,8 @@ class Tableau1 extends Phaser.Scene{
         for(let i=1;i<=300;i++){
             this.load.image('sea'+i, 'assets/sea/sea'+i+'.jpg');
         }
+        this.load.image('leafemit','assets/particles/leafemit.png');
+
     }
     create() {
 
@@ -19,6 +21,7 @@ class Tableau1 extends Phaser.Scene{
 
         this.largeur=1000;
         this.hauteur=500;
+
 
 
 
@@ -365,7 +368,16 @@ class Tableau1 extends Phaser.Scene{
         this.balle.setVelocityY(0)
         this.balle.setMaxVelocity(200)
 
-
+        this.particles = this.add.particles('leafemit');
+        this.particles.createEmitter({
+            follow:this.balle,
+            angle: { min: 10, max: 360 },
+            scale: {start: 0.01, end: 0.1},
+            speed: 80,
+            gravityY: -1,
+            lifespan: { min: 1, max: 500 },
+            /**blendMode: 'ADD'**/
+        });
 
         this.haut=this.physics.add.image(0,-20,'carre').setOrigin(0,0);
         this.haut.setDisplaySize(this.largeur,20)
