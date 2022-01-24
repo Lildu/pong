@@ -449,7 +449,7 @@ class Tableau1 extends Phaser.Scene{
             {
                 case Phaser.Input.Keyboard.KeyCodes.S:
                     if (me.gauche.y>0){
-                        me.gauche.setVelocityY(-100)
+                        me.gauche.setVelocityY(-200)
                     }
                     else{
                         me.gauche.setY(0)
@@ -459,7 +459,7 @@ class Tableau1 extends Phaser.Scene{
 
                 case Phaser.Input.Keyboard.KeyCodes.X:
                     if (me.gauche.y<400){
-                        me.gauche.setVelocityY(100)
+                        me.gauche.setVelocityY(200)
                     }
                     else{
                         me.gauche.setVelocityY(0)
@@ -469,7 +469,7 @@ class Tableau1 extends Phaser.Scene{
 
                 case Phaser.Input.Keyboard.KeyCodes.J:
                     if (me.droite.y>0){
-                        me.droite.setVelocityY(-100)
+                        me.droite.setVelocityY(-200)
                     }
                     else{
                         me.droite.setY(0)
@@ -479,7 +479,7 @@ class Tableau1 extends Phaser.Scene{
 
                 case Phaser.Input.Keyboard.KeyCodes.N:
                     if (me.droite.y<400){
-                        me.droite.setVelocityY(100)
+                        me.droite.setVelocityY(200)
                     }
                     else{
                         me.droite.setY(400)
