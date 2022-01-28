@@ -1,5 +1,4 @@
 let dir=1;
-
 class Tableau1 extends Phaser.Scene{
 
     preload(){
