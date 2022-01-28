@@ -17,16 +17,16 @@ class Tableau1 extends Phaser.Scene{
         }
 
         this.load.image('leafemit','assets/particles/leafemit.png');
-
+/**
         this.load.audio('son','assets/audio/seasound.mp3');
         this.load.audio('son1','assets/audio/son1.mp3');
-        this.load.audio('son2','assets/audio/son2.mp3');
+        this.load.audio('son2','assets/audio/son2.mp3');**/
 
 
     }
     create() {
 
-        this.son=this.sound.add('son',{loop: true});
+        /**this.son=this.sound.add('son',{loop: true});
         this.son1=this.sound.add('son1',{loop: false});
         this.son2=this.sound.add('son2',{loop: false});
         this.son.volume=0.03;
@@ -34,7 +34,7 @@ class Tableau1 extends Phaser.Scene{
         this.son2.volume=0.1;
         this.son.play();
         let me=this;
-
+**/
         this.largeur=1000;
         this.hauteur=500;
 
