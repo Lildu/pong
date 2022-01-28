@@ -27,11 +27,11 @@ class Tableau1 extends Phaser.Scene{
         let dir=1;
         let me=this;
         this.son=this.sound.add('son',{loop: true});
-        this.son1=this.sound.add('son1',{loop: false});
-        this.son2=this.sound.add('son2',{loop: false});
+        this.soun1=this.sound.add('son1',{loop: false});
+        this.soun2=this.sound.add('son2',{loop: false});
         this.son.volume=0.03;
-        this.son1.volume=0.1;
-        this.son2.volume=0.1;
+        this.soun1.volume=0.1;
+        this.soun2.volume=0.1;
         this.son.play();
 
 
@@ -475,12 +475,12 @@ class Tableau1 extends Phaser.Scene{
         this.physics.add.collider(this.balle,this.bas)
         this.physics.add.collider(this.balle,this.haut)
         this.physics.add.collider(this.balle,this.gauche, function(){
-            me.son1.play();
+            me.soun1.play();
             me.rebond(me.gauche)
             dir=1
         })
         this.physics.add.collider(this.balle,this.droite, function(){
-            me.son2.play();
+            me.soun2.play();
             console.log("touche droite");
             me.rebond(me.droite)
             dir=-1
