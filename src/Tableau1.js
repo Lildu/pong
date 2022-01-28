@@ -1,4 +1,3 @@
-
 class Tableau1 extends Phaser.Scene{
 
     preload(){
@@ -27,7 +26,7 @@ class Tableau1 extends Phaser.Scene{
 
 
         let me=this;
-        let dir=1;
+        /**let dir=1;**/
 
         this.son=this.sound.add('son',{loop: true});
         this.soun1=this.sound.add('son1',{loop: false});
@@ -477,18 +476,18 @@ class Tableau1 extends Phaser.Scene{
         this.physics.add.collider(this.balle,this.gauche, function(){
             me.soun1.play();
             me.rebond(me.gauche)
-            dir=1
+            /**dir=1**/
         })
         this.physics.add.collider(this.balle,this.droite, function(){
             me.soun2.play();
             console.log("touche droite");
             me.rebond(me.droite)
-            dir=-1
+            /**dir=-1**/
         })
 
         this.physics.add.collider(this.balle,this.bonus, function(){
             console.log("touche bonus");
-            me.collisionbonus(dir)
+            me.collisionbonus()
         })
 
 
@@ -511,18 +510,18 @@ class Tableau1 extends Phaser.Scene{
 
 
 **/
-    collisionbonus(dir){
+    collisionbonus(){
         let me=this;
 
         console.log("bonus")
         this.balle.setVelocityX(200)
-        if (dir == 1){
+        /**if ((dir == 1)){
             me.gauche.setDisplaySize(20,150)
         }
         else {
             me.droite.setDisplaySize(20,150)
         }
-
+**/
 
     }
   /**  checkBonus(){
