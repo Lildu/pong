@@ -24,7 +24,7 @@ class Tableau1 extends Phaser.Scene{
 
     }
     create() {
-
+        let me=this;
         this.son=this.sound.add('son',{loop: true});
         this.son1=this.sound.add('son1',{loop: false});
         this.son2=this.sound.add('son2',{loop: false});
@@ -32,7 +32,7 @@ class Tableau1 extends Phaser.Scene{
         this.son1.volume=0.1;
         this.son2.volume=0.1;
         this.son.play();
-        let me=this;
+
 
         this.largeur=1000;
         this.hauteur=500;
