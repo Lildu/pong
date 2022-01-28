@@ -18,6 +18,8 @@ class Tableau1 extends Phaser.Scene{
         this.load.audio('son','assets/Audio/seasound.mp3');
         this.load.audio('son1','assets/Audio/son1.wav');
         this.load.audio('son2','assets/Audio/son2.wav');
+        this.load.audio('son3','assets/Audio/son3.wav');
+        this.load.audio('son4','assets/Audio/son4.wav');
 
 
     }
@@ -31,9 +33,13 @@ class Tableau1 extends Phaser.Scene{
         this.son=this.sound.add('son',{loop: true});
         this.soun1=this.sound.add('son1',{loop: false});
         this.soun2=this.sound.add('son2',{loop: false});
+        this.soun3=this.sound.add('son3',{loop: false});
+        this.soun4=this.sound.add('son4',{loop: false});
         this.son.volume=0.03;
         this.soun1.volume=0.1;
         this.soun2.volume=0.1;
+        this.soun3.volume=0.1;
+        this.soun4.volume=0.1;
         this.son.play();
 
 
@@ -393,7 +399,7 @@ class Tableau1 extends Phaser.Scene{
             repeat:1000000,
             duration:1000,
         })
-        this.bonus=this.physics.add.image(((Math.random()*1000)+100),((Math.random()*500)+100),'cercle1')
+        this.bonus=this.physics.add.image((100+(Math.random()*800)),(100+(Math.random()*400)),'cercle1')
         this.bonus.setDisplaySize(20,20)
         this.bonus.body.setAllowGravity(true)
         this.particles = this.add.particles('leafemit');
@@ -471,8 +477,15 @@ class Tableau1 extends Phaser.Scene{
 
 
 
-        this.physics.add.collider(this.balle,this.bas)
-        this.physics.add.collider(this.balle,this.haut)
+        this.physics.add.collider(this.balle,this.bas, function(){
+            me.soun3.play();
+        })
+
+        this.physics.add.collider(this.balle,this.haut, function(){
+            me.soun4.play();
+        })
+
+
         this.physics.add.collider(this.balle,this.gauche, function(){
             me.soun1.play();
             me.rebond(me.gauche)
@@ -651,8 +664,8 @@ class Tableau1 extends Phaser.Scene{
         this.gauche.setDisplaySize(20,100)
         this.gauche.setY((this.hauteur/2)-50);
         this.droite.setY((this.hauteur/2)-50);
-        this.bonus.setX((Math.random()*900))
-        this.bonus.setY((Math.random()*400))
+        this.bonus.setX((100+(Math.random()*800)))
+        this.bonus.setY(100+(Math.random()*300))
         this.bonus.setVelocityY(0)
         this.bonus.setVelocityX(0)
 
