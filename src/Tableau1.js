@@ -22,7 +22,7 @@ class Tableau1 extends Phaser.Scene{
     create() {
 
         this.son=this.sound.add('son',{loop: true});
-        this.son.volume=0.01;
+        this.son.volume=0.03;
         this.son.play();
         let me=this;
 
@@ -375,6 +375,22 @@ class Tableau1 extends Phaser.Scene{
         this.balle.setVelocityY(0)
         this.balle.setMaxVelocity(200)
 
+
+        /**this.bonus=this.add.image(500,250,'cercle1')
+        this.bonus.setDisplaySize(20,20)
+        this.particles = this.add.particles('leafemit');
+        this.particles.createEmitter({
+            follow:this.bonus,
+            angle: { min: 1, max: 360 },
+            scale: {start: 0.01, end: 0.1},
+            speed: 10,
+            gravityY: -1,
+            lifespan: { min: 1, max: 100 },
+            blendMode: 'ADD',
+            alpha:1,
+        });
+**/
+
         this.particles = this.add.particles('leafemit');
         this.particles.createEmitter({
             follow:this.balle,
@@ -383,8 +399,25 @@ class Tableau1 extends Phaser.Scene{
             speed: 80,
             gravityY: -1,
             lifespan: { min: 1, max: 500 },
+
             /**blendMode: 'ADD'**/
         });
+
+        this.particles = this.add.particles('leafemit');
+        this.particles.createEmitter({
+            follow:this.balle,
+            angle: { min: 10, max: 10 },
+            scale: {start: 0.01, end: 0.1},
+            speed: 80,
+            gravityY: -1,
+            lifespan: { min: 1, max: 500 },
+            blendMode: 'ADD',
+            alpha:0.2,
+        });
+
+
+
+
 
         this.haut=this.physics.add.image(0,-20,'carre').setOrigin(0,0);
         this.haut.setDisplaySize(this.largeur,20)
@@ -420,35 +453,43 @@ class Tableau1 extends Phaser.Scene{
             console.log("touche droite");
             me.rebond(me.droite)
         })
+
+
+
+
         this.Initiale();
         this.joueurGauche = new Joueur('Joueur 1','joueurGauche')
         this.joueurDroite = new Joueur('Joueur 2','joueurDroite')
         console.log(this.joueurGauche)
 
         this.initKeyboard()
+        /**this.checkBonus()**/
+    }
+
+/**Fonction Bonus**/
+ /**   Resize(){
 
     }
 
-/**
-    Resize(){
+
+
+
+    collisionbonus(){
         let me=this;
-        me.gauche.setDisplaySize(20,100)
+
+        console.log("bonus")
+        me.gauche.setDisplaySize(20,300)
+        setTimeout(me.gauche.setDisplaySize(20,100), 3000)
+
     }
-
-
-
-
-    collisionbonus(balle){
-        let me=this;
-        if(me.balle.y==me.bonus.y & me.balle.x==me.bonus.y){
-            me.gauche.setDisplaySize(20,150)
-            setTimeout(Resize(), 3000)
-
-
+    checkBonus(){
+        if( this.balle.x < this.bonus.x + this.bonus.width &&
+            this.balle.x + this.balle.width > this.bonus.x &&
+            this.balle.y < this.bonus.y + this.bonus.height &&
+            this.balle.height + this.balle.y > this.bonus.y){
+            console.log("touche bonus")
         }
-
     }
-
 **/
 
 
@@ -569,6 +610,7 @@ class Tableau1 extends Phaser.Scene{
 
     }
     update(){
+
 
 
         if(this.balle.x>this.largeur){
