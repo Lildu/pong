@@ -1,4 +1,4 @@
-let dir=1;
+
 class Tableau1 extends Phaser.Scene{
 
     preload(){
@@ -24,6 +24,7 @@ class Tableau1 extends Phaser.Scene{
 
     }
     create() {
+        let dir=1;
         let me=this;
         this.son=this.sound.add('son',{loop: true});
         this.son1=this.sound.add('son1',{loop: false});
@@ -487,7 +488,7 @@ class Tableau1 extends Phaser.Scene{
 
         this.physics.add.collider(this.balle,this.bonus, function(){
             console.log("touche bonus");
-            me.collisionbonus()
+            me.collisionbonus(dir)
         })
 
 
@@ -510,7 +511,7 @@ class Tableau1 extends Phaser.Scene{
 
 
 **/
-    collisionbonus(){
+    collisionbonus(dir){
         let me=this;
 
         console.log("bonus")
