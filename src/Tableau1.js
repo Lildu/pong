@@ -516,7 +516,7 @@ class Tableau1 extends Phaser.Scene{
 
         console.log("bonus")
         this.balle.setVelocityX(200)
-        if (dir === 1){
+        if (dir == 1){
             me.gauche.setDisplaySize(20,150)
         }
         else {
