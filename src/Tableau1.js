@@ -397,13 +397,14 @@ class Tableau1 extends Phaser.Scene{
         this.particles = this.add.particles('leafemit');
         this.particles.createEmitter({
             follow:this.bonus,
-            angle: { min: 1, max: 360 },
-            scale: {start: 0.01, end: 0.1},
+            angle: { min: 1, max: 20 },
+            scale: {start: 0.01, end: 0.2},
+            rotation: 100,
             speed: 10,
-            gravityY: -1,
-            lifespan: { min: 1, max: 200 },
+            gravityY: 10,
+            lifespan: { min: 1, max: 100 },
             blendMode: 'ADD',
-            alpha:1,
+            alpha:0.7,
         });
         this.tweens.add({
             targets:[this.bonus],
@@ -411,7 +412,9 @@ class Tableau1 extends Phaser.Scene{
             ease :'Repeat',
             repeat:1000000,
             duration:1000,
+
         })
+
 
 
         this.particles = this.add.particles('leafemit');

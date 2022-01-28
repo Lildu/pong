@@ -1,7 +1,8 @@
 body{
     font-family: Arial, sans-serif;
     font-size: 12px;
-    background-color: #000000;
+    /**background-color: #000000;**/
+    background-image: url('assets/background.png');
     text-align: center;
 }
 a{
