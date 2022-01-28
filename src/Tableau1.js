@@ -15,9 +15,9 @@ class Tableau1 extends Phaser.Scene{
         }
         this.load.image('leafemit','assets/particles/leafemit.png');
 
-        this.load.audio('son','assets/audio/seasound.mp3');
-        this.load.audio('son1','assets/audio/son1.mp3');
-        this.load.audio('son2','assets/audio/son2.mp3');
+        this.load.audio('son','assets/Audio/seasound.mp3');
+        this.load.audio('son1','assets/Audio/son1.mp3');
+        this.load.audio('son2','assets/Audio/son2.mp3');
 
 
     }
