@@ -12,11 +12,18 @@ class Tableau1 extends Phaser.Scene{
         for(let i=1;i<=300;i++){
             this.load.image('sea'+i, 'assets/sea/sea'+i+'.jpg');
         }
+
         this.load.image('leafemit','assets/particles/leafemit.png');
+
+        this.load.audio('son','assets/audio/seasound.wav');
+
 
     }
     create() {
 
+        this.son=this.sound.add('son',{loop: true});
+        this.son.volume=0.01;
+        this.son.play();
         let me=this;
 
         this.largeur=1000;
@@ -421,6 +428,29 @@ class Tableau1 extends Phaser.Scene{
         this.initKeyboard()
 
     }
+
+/**
+    Resize(){
+        let me=this;
+        me.gauche.setDisplaySize(20,100)
+    }
+
+
+
+
+    collisionbonus(balle){
+        let me=this;
+        if(me.balle.y==me.bonus.y & me.balle.x==me.bonus.y){
+            me.gauche.setDisplaySize(20,150)
+            setTimeout(Resize(), 3000)
+
+
+        }
+
+    }
+
+**/
+
 
     rebond(raquette){
         let me=this;
