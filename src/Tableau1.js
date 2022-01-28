@@ -14,9 +14,9 @@ class Tableau1 extends Phaser.Scene{
         for(let i=1;i<=300;i++){
             this.load.image('sea'+i, 'assets/sea/sea'+i+'.jpg');
         }
-
         this.load.image('leafemit','assets/particles/leafemit.png');
 
+<<<<<<< HEAD
         this.load.audio('son','assets/audio/seasound.mp3');
         this.load.audio('son1','assets/audio/son1.mp3');
         this.load.audio('son2','assets/audio/son2.mp3');
@@ -34,6 +34,12 @@ class Tableau1 extends Phaser.Scene{
         this.soun2.volume=0.1;
         this.son.play();
 
+=======
+    }
+    create() {
+
+        let me=this;
+>>>>>>> parent of feeded9 (ok)
 
         this.largeur=1000;
         this.hauteur=500;
@@ -500,6 +506,7 @@ class Tableau1 extends Phaser.Scene{
         /**this.checkBonus()**/
     }
 
+<<<<<<< HEAD
 /**Fonction Bonus**/
  /**   Resize(){
 
@@ -533,6 +540,8 @@ class Tableau1 extends Phaser.Scene{
 **/
 
 
+=======
+>>>>>>> parent of feeded9 (ok)
     rebond(raquette){
         let me=this;
 
