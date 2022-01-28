@@ -511,7 +511,7 @@ class Tableau1 extends Phaser.Scene{
 
 **/
     collisionbonus(){
-        let me=this;
+        /**let me=this;**/
 
         console.log("bonus")
         this.balle.setVelocityX(200)
