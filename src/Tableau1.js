@@ -1,4 +1,7 @@
+let dir=1;
+
 class Tableau1 extends Phaser.Scene{
+
     preload(){
         this.load.image('carre', 'assets/carre.png');
         this.load.image('carre1', 'assets/carre1.png');
@@ -16,13 +19,19 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('leafemit','assets/particles/leafemit.png');
 
         this.load.audio('son','assets/audio/seasound.wav');
+        this.load.audio('son1','assets/audio/son1.wav');
+        this.load.audio('son2','assets/audio/son2.wav');
 
 
     }
     create() {
 
         this.son=this.sound.add('son',{loop: true});
+        this.son1=this.sound.add('son1',{loop: false});
+        this.son2=this.sound.add('son2',{loop: false});
         this.son.volume=0.03;
+        this.son1.volume=0.1;
+        this.son2.volume=0.1;
         this.son.play();
         let me=this;
 
@@ -375,9 +384,16 @@ class Tableau1 extends Phaser.Scene{
         this.balle.setVelocityY(0)
         this.balle.setMaxVelocity(200)
 
-
-        /**this.bonus=this.add.image(500,250,'cercle1')
+        this.tweens.add({
+            targets:[this.balle],
+            rotation: -6.5,
+            ease :'Repeat',
+            repeat:1000000,
+            duration:1000,
+        })
+        this.bonus=this.physics.add.image((Math.random(100,900)),(Math.random(100,400)),'cercle1')
         this.bonus.setDisplaySize(20,20)
+        this.bonus.body.setAllowGravity(true)
         this.particles = this.add.particles('leafemit');
         this.particles.createEmitter({
             follow:this.bonus,
@@ -385,11 +401,18 @@ class Tableau1 extends Phaser.Scene{
             scale: {start: 0.01, end: 0.1},
             speed: 10,
             gravityY: -1,
-            lifespan: { min: 1, max: 100 },
+            lifespan: { min: 1, max: 200 },
             blendMode: 'ADD',
             alpha:1,
         });
-**/
+        this.tweens.add({
+            targets:[this.bonus],
+            rotation: -6.5,
+            ease :'Repeat',
+            repeat:1000000,
+            duration:1000,
+        })
+
 
         this.particles = this.add.particles('leafemit');
         this.particles.createEmitter({
@@ -444,14 +467,25 @@ class Tableau1 extends Phaser.Scene{
         this.droite.setImmovable(true)
 
 
+
+
         this.physics.add.collider(this.balle,this.bas)
         this.physics.add.collider(this.balle,this.haut)
         this.physics.add.collider(this.balle,this.gauche, function(){
+            me.son1.play();
             me.rebond(me.gauche)
+            dir=1
         })
         this.physics.add.collider(this.balle,this.droite, function(){
+            me.son2.play();
             console.log("touche droite");
             me.rebond(me.droite)
+            dir=-1
+        })
+
+        this.physics.add.collider(this.balle,this.bonus, function(){
+            console.log("touche bonus");
+            me.collisionbonus()
         })
 
 
@@ -473,16 +507,22 @@ class Tableau1 extends Phaser.Scene{
 
 
 
-
+**/
     collisionbonus(){
         let me=this;
 
         console.log("bonus")
-        me.gauche.setDisplaySize(20,300)
-        setTimeout(me.gauche.setDisplaySize(20,100), 3000)
+        this.balle.setVelocityX(200)
+        if (dir ==1){
+            me.gauche.setDisplaySize(20,150)
+        }
+        else {
+            me.droite.setDisplaySize(20,150)
+        }
+
 
     }
-    checkBonus(){
+  /**  checkBonus(){
         if( this.balle.x < this.bonus.x + this.bonus.width &&
             this.balle.x + this.balle.width > this.bonus.x &&
             this.balle.y < this.bonus.y + this.bonus.height &&
@@ -512,7 +552,7 @@ class Tableau1 extends Phaser.Scene{
         this.balle.setVelocityY(this.balle.body.velocity.y + positionRelativeRaquette * hauteurRaquette)
     }
 
-    initKeyboard(){
+     initKeyboard(){
         let me=this;
         this.input.keyboard.on('keydown', function(kevent)
         {
@@ -593,9 +633,14 @@ class Tableau1 extends Phaser.Scene{
     Initiale (){
         this.balle.setX((this.largeur/2)-50);
         this.balle.setY((this.hauteur/2));
+        this.droite.setDisplaySize(20,100)
+        this.gauche.setDisplaySize(20,100)
         this.gauche.setY((this.hauteur/2)-50);
         this.droite.setY((this.hauteur/2)-50);
-
+        this.bonus.setX((Math.random()*900))
+        this.bonus.setY((Math.random()*400))
+        this.bonus.setVelocityY(0)
+        this.bonus.setVelocityX(0)
 
         let pourcent = Phaser.Math.Between(0, 100)
 
