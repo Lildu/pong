@@ -393,7 +393,7 @@ class Tableau1 extends Phaser.Scene{
             repeat:1000000,
             duration:1000,
         })
-        this.bonus=this.physics.add.image((Math.random(100,900)),(Math.random(100,400)),'cercle1')
+        this.bonus=this.physics.add.image(((Math.random()*1000)+100),((Math.random()*500)+100),'cercle1')
         this.bonus.setDisplaySize(20,20)
         this.bonus.body.setAllowGravity(true)
         this.particles = this.add.particles('leafemit');
